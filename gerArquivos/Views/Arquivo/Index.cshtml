@@ -1,0 +1,66 @@
+﻿
+@model List<gerArquivos.Models.vo.voArquivo>
+
+@{
+    ViewData["Title"] = "Listagem de Arquivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";      
+
+
+}
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2>Listagem de Arquivos</h2>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <a asp-area="" asp-controller="Arquivo" asp-action="AddArquivo">Adicionar novo Arquivo</a>        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><hr /></div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-striped" style="width: 90%;" align=center>
+            <thead class="cabecListas">
+                <tr>                    
+                    <th width=50% align=center>
+                        <strong>Nome</strong>
+                    </th>
+                    <th width=30% align=center>
+                        <strong>Data de Inclusão</strong>
+                    </th>
+                    <th width=20%>
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @{
+                    if (Model != null)
+                    {
+                        foreach (gerArquivos.Models.vo.voArquivo vo in Model)
+                        {
+                            <tr>
+                                <td><a href="@string.Concat(vo.pastaArquivo,vo.Nome)" target="_blank">@vo.Nome</a></td>                                
+                                <td>@vo.DataInclusao</td>
+                                <td align=center>                                    
+                                    <a href="@string.Concat(vo.pastaArquivo,vo.Nome)" target="_blank" class='btn btn-default' title='Acompanhar'><span class='glyphicon glyphicon-eye-open' data-toggle='tooltip' title='Visualizar'></span></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script>
+    LoginGoogle();
+</script>
